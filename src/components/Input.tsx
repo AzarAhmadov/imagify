@@ -10,12 +10,12 @@ import Logo from '../assets/images/3d.webp'
 
 const Input: React.FC = () => {
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState<any>('');
     const [image, setImage] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const randomGenerate = () => {
-        setSearchTerm(Random);
+        setSearchTerm(Random());
     };
 
     const onSearchSubmit = async () => {
