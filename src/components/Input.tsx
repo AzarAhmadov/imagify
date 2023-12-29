@@ -2,38 +2,58 @@ import React, { useState } from 'react'
 import Random from '../components/Random'
 import searchImages from '../api/Api';
 import ImageList from './ImageList';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { SyncLoader } from 'react-spinners';
 
 const Input: React.FC = () => {
 
-    const [searchTerm, setSearchTerm] = useState("");
-    const [image, setImage] = useState([])
+    const [searchTerm, setSearchTerm] = useState('');
+    const [image, setImage] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const randomGenerate = () => {
         setSearchTerm(Random);
     };
 
     const onSearchSubmit = async () => {
-
         if (!searchTerm) {
-            return <p>fuck</p>
+            toast.error('Please enter a search term');
+            return;
         }
 
-        const result = await searchImages(searchTerm);
+        setLoading(true);
 
-        if (result.length === 0) {
-            return <p>ne yapiyor</p>
+        try {
+            const result = await searchImages(searchTerm);
+
+            if (result.length === 0) {
+                toast.info('No results found');
+                return;
+            }
+
+            setImage(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            toast.error('An error occurred while fetching data');
+        } finally {
+            setLoading(false);
         }
-
-        setImage(result)
     };
 
     const handleRefresh = () => {
         window.location.href = `?refreshed=true`;
     };
 
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            onSearchSubmit();
+        }
+    };
+
     return (
         <>
-
             <main>
                 <section id='header'>
                     <img src="https://static.vecteezy.com/system/resources/previews/010/872/567/original/3d-photographer-illustration-png.png" alt="" />
@@ -41,11 +61,13 @@ const Input: React.FC = () => {
                         Imagify
                     </h3>
                 </section>
+
                 <section id='content'>
                     <input
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         type="text"
+                        onKeyDown={handleKeyPress}
                         placeholder='Search...' />
                     <ul>
                         <li>
@@ -60,7 +82,16 @@ const Input: React.FC = () => {
                     </ul>
                 </section>
             </main>
+
             <ImageList image={image} />
+
+            {loading && (
+                <div className="loader">
+                    <SyncLoader color={'#fff'} size={12} />
+                </div>
+            )}
+
+            <ToastContainer />
         </>
     )
 }

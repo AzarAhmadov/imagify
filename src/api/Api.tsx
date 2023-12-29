@@ -8,7 +8,8 @@ const searchImages = async (term: any) => {
             Authorization: `Client-ID ${clientId}`,
         },
         params: {
-            query: term
+            query: term,
+            per_page: 30 
         }
     });
     return response.data.results;
