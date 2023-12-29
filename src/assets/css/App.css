@@ -345,7 +345,6 @@ main {
     justify-content: center;
 }
 
-
 #footer {
     font-size: 19px;
     text-align: center;
@@ -359,5 +358,60 @@ main {
     & a {
         margin-left: 5px;
         color: #cd8e5f;
+    }
+}
+
+@media only screen and (max-width:578px) {
+    #header {
+        & img {
+            height: 100px;
+            width: 140px;
+        }
+
+        & h3 {
+            font-size: 32px;
+        }
+    }
+
+    #content {
+        width: 80%;
+
+        & input {
+            font-size: 17px;
+            width: 100%;
+
+            &::placeholder {
+                font-size: 17px;
+            }
+        }
+
+        & ul {
+            & li {
+                & button {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+
+    main {
+        &::before {
+            height: 320px;
+        }
+    }
+
+    #image-list {
+        padding: 0 0 20px;
+        margin-top: 40px;
+
+        .container {
+            padding: 0 26px;
+        }
+    }
+
+    #footer {
+        left: -3px;
+        font-size: 15px;
     }
 }
