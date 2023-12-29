@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Random from '../components/Random'
 import searchImages from '../api/Api';
 import ImageList from './ImageList';
 import { toast } from 'react-toastify';
@@ -7,15 +6,16 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SyncLoader } from 'react-spinners';
 import Logo from '../assets/images/3d.webp'
+import getRandomWord from '../components/Random';
 
 const Input: React.FC = () => {
 
-    const [searchTerm, setSearchTerm] = useState<any>('');
+    const [searchTerm, setSearchTerm] = useState<string>('');
     const [image, setImage] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const randomGenerate = () => {
-        setSearchTerm(Random());
+        setSearchTerm(getRandomWord);
     };
 
     const onSearchSubmit = async () => {
