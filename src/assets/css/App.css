@@ -239,7 +239,7 @@ main {
         .container {
 
             & img {
-                width: 550px;
+                max-width: 550px;
                 height: 450px;
                 object-fit: cover;
                 display: block;
@@ -394,6 +394,20 @@ main {
         }
     }
 
+    .modal {
+        padding: 15px;
+        .container {
+            padding: 10px 15px !important;
+
+            .image {
+                & img {
+                    max-width: 400px;
+                    width: 100%;
+                    height: 400px;
+                }
+            }
+        }
+    }
 
     main {
         &::before {
