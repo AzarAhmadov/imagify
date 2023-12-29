@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SyncLoader } from 'react-spinners';
+import Logo from '../assets/images/3d.webp'
 
 const Input: React.FC = () => {
 
@@ -56,7 +57,7 @@ const Input: React.FC = () => {
         <>
             <main>
                 <section id='header'>
-                    <img src="https://static.vecteezy.com/system/resources/previews/010/872/567/original/3d-photographer-illustration-png.png" alt="" />
+                    <img src={Logo} alt="Logo" />
                     <h3>
                         Imagify
                     </h3>
