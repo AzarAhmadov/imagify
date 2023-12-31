@@ -9,7 +9,7 @@ const searchImages = async (term: any) => {
         },
         params: {
             query: term,
-            per_page: 30 
+            per_page: 100 
         }
     });
     return response.data.results;
