@@ -8,7 +8,7 @@ Live demo : https://imagify0.vercel.app/
 - Unsplash Developers API
 
 ## Features
-- Search image
+- Search any category image
 - Download your favorite image
 - When you hover your mouse over the picture, you can see the name and profile picture of the owner of the picture.
 
